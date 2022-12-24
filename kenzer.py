@@ -1382,7 +1382,7 @@ class Kenzer(object):
     
     # controls
     def process(self, text):
-        global _delegates
+        global _delegates, _waf
         self.content = text["content"].split()
         self.sender_email = text["sender_email"]
         self.type = text["type"]
