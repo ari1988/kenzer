@@ -1206,11 +1206,11 @@ class Kenzer(object):
         self.wafscan()
         self.shodscan()
         self.favscan()
-        self.idscan()
+        self.idscan("workflow")
         self.subscan()
         self.buckscan()
-        self.cvescan()
-        self.vulnscan()
+        self.cvescan("workflow")
+        self.vulnscan("workflow")
         self.bakscan()
         self.reposcan()
         self.vizscan()
@@ -1293,7 +1293,9 @@ class Kenzer(object):
             for tar in os.listdir(_kenzerdb):
                 if _splitting == "True":
                     self.splitkenz(tar.lower())
-            os.system("cd {0} && git remote set-url origin https://{1}@github.com/{2}/{3}.git && git pull && cd ../scripts && bash generate.sh && cd .. && git add . && git commit -m \"{4}`date`)\" && git push".format(
+            os.system("cd {0} && git remote set-url origin https://{1}@github.com/{2}/{3}.git && git pull && git add . && git commit -m \"data-{4}`date`)\" && git push".format(
+                _kenzerdb, _github, _user, _repo, _BotMail+"("))
+            os.system("cd {0} && git pull && cd ../scripts && bash generate.sh && cd .. && git add . && git commit -m \"stats-{4}`date`)\" && git push".format(
                 _kenzerdb, _github, _user, _repo, _BotMail+"("))
             for tar in os.listdir(_kenzerdb):
                     self.mergekenz(tar.lower())
