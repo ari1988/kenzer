@@ -1293,7 +1293,7 @@ class Kenzer(object):
             for tar in os.listdir(_kenzerdb):
                 if _splitting == "True":
                     self.splitkenz(tar.lower())
-            os.system("cd {0} && git remote set-url origin https://{1}@github.com/{2}/{3}.git && git pull && git add . && git commit -m \"data-{4}`date`)\" && git push".format(
+            os.system("cd {0}/../ && git remote set-url origin https://{1}@github.com/{2}/{3}.git && git pull && git add . && git commit -m \"data-{4}`date`)\" && git push".format(
                 _kenzerdb, _github, _user, _repo, _BotMail+"("))
             os.system("cd {0} && git pull && cd ../scripts && bash generate.sh && cd .. && git add . && git commit -m \"stats-{4}`date`)\" && git push".format(
                 _kenzerdb, _github, _user, _repo, _BotMail+"("))
