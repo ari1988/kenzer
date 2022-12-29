@@ -391,13 +391,21 @@ class Scanner:
         path = self.path
         out = path+"/bakscan.kenz"
         outl = path+"/bakscan.log"
-        subs = path+"/webenum.kenz"
-        if(os.path.exists(subs) == False):
-            return("!webenum")
+        if self.waf != "True":
+            subs = path+"/webenum.kenz"
+            if(os.path.exists(subs) == False):
+                return("!webenum")
+        else:
+            subs = path+"/wafscan.kenz"
+            if(os.path.exists(subs) == False):
+                return("!wafscan")
+            ot = path+"/wafscan.log"
+            os.system("cat {0} | grep ',False,' | cut -d ',' -f 1 | sort -u > {1}".format(subs, ot))
+            subs = ot
         if(os.path.exists(out)):
-            os.system("mv {0} {0}.old".format(out))
+            os.system("rm {0}".format(out))
         os.system("fuzzuli -f {0} -to 15 > {1}".format(subs, outl))
-        os.system('cat {0} | grep "\[-\]" | cut -d " " -f 2 | sort -u > {1}'.format(outl, out))
+        os.system('cat {0} | grep -Po "URL: \[.*\] " |  sort -u > {1}'.format(outl, out))
         line = 0
         if(os.path.exists(out)):
             with open(out, encoding="ISO-8859-1") as f:

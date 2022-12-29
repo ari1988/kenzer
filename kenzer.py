@@ -1231,7 +1231,7 @@ class Kenzer(object):
         self.webenum()
         self.wafscan()
         self.sync()
-        if self.distribute(["sync,urlenum-active,keysenum,socenum,cvescan-workflow,sync monitor"]):
+        if self.distribute(["sync,urlenum-active,keysenum,socenum,sync,cvescan-workflow,sync monitor"]):
             pass
         else:
             self.urlenum('active')

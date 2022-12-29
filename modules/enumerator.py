@@ -326,7 +326,7 @@ class Enumerator:
                 with open(path+"/yourx.log", encoding="ISO-8859-1") as f:
                     oline = len(f.readlines())
             os.system("cat {0}/yourx.log | cut -d ' ' -f 2 > {1}".format(path,output))
-            if(iline==oline) or (cnt==14):
+            if(iline==oline) or (cnt==7):
                 break
             cnt = cnt + 1
         line = 0
