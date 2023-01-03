@@ -31,9 +31,9 @@ class Monitor:
         output = path+"/certex.mon"
         if len(domains) == 0:
             os.system(
-                'certex -l -f {0} -o {1} -L 3 | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {2} &'.format(self.db+"../summary/targets.txt", templ, output))
+                'certex -l -f {0} -o {1} -L 1 | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {2} &'.format(self.db+"../summary/targets.txt", templ, output))
         else:
-            os.system('certex -l -t {0} -o {1} -L 3 | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {2} &'.format(domains, templ, output))
+            os.system('certex -l -t {0} -o {1} -L 1 | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {2} &'.format(domains, templ, output))
         return
 
     # enumerates subdomains using subfinder & removes wildcards using dnsx
