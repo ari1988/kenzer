@@ -28,12 +28,11 @@ class Monitor:
         domains = self.domains
         path = self.path
         templ = path+"/certex.log"
-        output = path+"/certex.mon"
         if len(domains) == 0:
             os.system(
-                'certex -l -f {0} -o {1} -L 1 | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {2} &'.format(self.db+"../summary/targets.txt", templ, output))
+                'certex -l -f {0} -L 1 >> {1} &'.format(self.db+"../summary/targets.txt", templ))
         else:
-            os.system('certex -l -t {0} -o {1} -L 1 | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {2} &'.format(domains, templ, output))
+            os.system('certex -l -t {0} -L 1 >> {1} &'.format(domains, templ))
         return
 
     # enumerates subdomains using subfinder & removes wildcards using dnsx
@@ -83,6 +82,8 @@ class Monitor:
         cer = path+"/certex.mon"
         sub = path+"/subfinder.mon"
         out = path+"/subenum.mon"
+        ocer = path+"/certex.log"
+        os.system('cat {0} | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {1}'.format(ocer, cer))
         os.system("cat {0} {1} | sort -u > {2} && rm {0} {1}".format(cer, sub, out))
         self.timestamp()
 
