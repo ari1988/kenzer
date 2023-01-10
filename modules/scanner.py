@@ -28,16 +28,18 @@ class Scanner:
 
     # runs nuclei
 
-    def nuclei(self, template, hosts, output):
+    def nuclei(self, template, hosts, output, ish=""):
         severity = ""
+        padd = ""
+        if len(ish)>0:
+            padd = " -iserver {0} -itoken {1} ".format(ish.split("|")[0], ish.split("|")[1])
         if len(self.severity) > 0:
             severity = "/"+self.severity
-        #os.system("nuclei -project -project-path {4}/nuclei -stats -retries 2 -t {3}nuclei/{0}{5} -timeout 8 -l {1} -o {2}".format(template, hosts, output, self.templates, self.path, severity))
         if severity != "/workflow":
-            os.system("nuclei -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -t {3}nuclei/{0}{4}".format(template, hosts, output, self.templates, severity))
+            os.system("nuclei {5} -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -t {3}nuclei/{0}{4}".format(template, hosts, output, self.templates, severity, padd))
         else:
-            os.system("cd {3}nuclei/{0} && nuclei -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -w workflow".format(template, hosts, output+".workflow", self.templates, severity))
-            os.system("nuclei -stats -retries 1 -rl 50 -c 25 -duc -timeout 8 -l {1} -o {2} -t {3}nuclei/{0}/critical/standalone -t {3}nuclei/{0}/high/standalone -t {3}nuclei/{0}/medium/standalone -t {3}nuclei/{0}/low/standalone ".format(template, hosts, output+".standalone", self.templates, severity))
+            os.system("cd {3}nuclei/{0} && nuclei {5} -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -w workflow".format(template, hosts, output+".workflow", self.templates, severity, padd))
+            os.system("nuclei {5} -stats -retries 1 -rl 50 -c 25 -duc -timeout 8 -l {1} -o {2} -t {3}nuclei/{0}/critical/standalone -t {3}nuclei/{0}/high/standalone -t {3}nuclei/{0}/medium/standalone -t {3}nuclei/{0}/low/standalone ".format(template, hosts, output+".standalone", self.templates, severity, padd))
             os.system("cat {0}.* | sort -u > {0} && rm {0}.*".format(output))
         return
 
@@ -53,7 +55,7 @@ class Scanner:
     # core modules
 
     # hunts for subdomain takeovers using nuclei
-    def subscan(self):
+    def subscan(self, ish=""):
         domain = self.domain
         path = self.path
         output = path+"/subscanWEB.log"
@@ -65,14 +67,14 @@ class Scanner:
             out = out+".split."+botn
         if(os.path.exists(subs) == False):
             return("!webenum")
-        self.nuclei("subscan/web", subs, output)
+        self.nuclei("subscan/web", subs, output, ish)
         subs = path+"/subenum.kenz"
         if(os.path.exists(subs+".split."+botn)):
             subs = subs+".split."+botn
         if(os.path.exists(subs) == False):
             return("!subenum")
         output = path+"/subscanDNS.log"
-        self.nuclei("subscan/dns", subs, output)
+        self.nuclei("subscan/dns", subs, output, ish)
         if(os.path.exists(out)):
             os.system("mv {0} {0}.old".format(out))
         os.system("cat {0}/subscan* | sort -u > {1}".format(path, out))
@@ -83,7 +85,7 @@ class Scanner:
         return line
 
     # hunts for CVEs using nuclei & jaeles
-    def cvescan(self):
+    def cvescan(self, ish=""):
         domain = self.domain
         path = self.path
         if self.waf != "True":
@@ -108,7 +110,7 @@ class Scanner:
             os.system("cat {0} | grep ',False,' | cut -d ',' -f 1 | sort -u > {1}".format(subs, ot))
             subs = ot
         output = path+"/cvescanDOMN.log"
-        self.nuclei("cvescan", subs, output)
+        self.nuclei("cvescan", subs, output, ish)
         output = path+"/cvescanDOMJ.log"
         self.jaeles("cvescan", subs, output)
         if(os.path.exists(out)):
@@ -121,7 +123,7 @@ class Scanner:
         return line
 
     # hunts for vulnerabilities in URL parameters using nuclei & jaeles
-    def urlscan(self):
+    def urlscan(self, ish=""):
         domain = self.domain
         path = self.path
         subs = path+"/urlenum.kenz"
@@ -133,7 +135,7 @@ class Scanner:
             subs = subs+".split."+botn
             out = out+".split."+botn    
         output = path+"/urlscanDOMN.log"
-        self.nuclei("urlscan", subs, output)
+        self.nuclei("urlscan", subs, output, ish)
         output = path+"/urlscanDOMJ.log"
         self.jaeles("urlscan", subs, output)
         if(os.path.exists(out)):
@@ -146,7 +148,7 @@ class Scanner:
         return line
 
     # hunts for vulnerabilities using nuclei & jaeles
-    def vulnscan(self):
+    def vulnscan(self, ish=""):
         domain = self.domain
         path = self.path
         if self.waf != "True":
@@ -171,7 +173,7 @@ class Scanner:
             os.system("cat {0} | grep ',False,' | cut -d ',' -f 1 | sort -u > {1}".format(subs, ot))
             subs = ot
         output = path+"/vulnscanDOMN.log"
-        self.nuclei("vulnscan", subs, output)
+        self.nuclei("vulnscan", subs, output, ish)
         output = path+"/vulnscanDOMJ.log"
         self.jaeles("vulnscan", subs, output)
         if(os.path.exists(out)):
@@ -184,7 +186,7 @@ class Scanner:
         return line
     
     # scan with customized templates
-    def cscan(self):
+    def cscan(self, ish=""):
         domain = self.domain
         path = self.path
         if self.waf != "True":
@@ -209,7 +211,7 @@ class Scanner:
             os.system("cat {0} | grep ',False,' | cut -d ',' -f 1 | sort -u > {1}".format(subs, ot))
             subs = ot
         output = path+"/cscanDOMN.log"
-        self.nuclei("cscan", subs, output)
+        self.nuclei("cscan", subs, output, ish)
         output = path+"/cscanDOMJ.log"
         self.jaeles("cscan", subs, output)
         if(os.path.exists(out)):
@@ -241,7 +243,7 @@ class Scanner:
             "S3Hunter --no-regions -l {0} -o {1} -P".format(subs, output))
         subs = output
         output = path+"/s3huntPerms.log"
-        self.nuclei("subscan/web/S3Hunter.yaml", subs, output)
+        self.nuclei("subscan/web/S3Hunter.yaml", subs, output, ish)
         if(os.path.exists(out)):
             os.system("mv {0} {0}.old".format(out))
         os.system("cat {0}/s3hunt* | sort -u > {1}".format(path, out))
@@ -296,7 +298,7 @@ class Scanner:
         return line
 
     # fingerprints probed servers using nuclei & jaeles
-    def idscan(self):
+    def idscan(self, ish=""):
         domain = self.domain
         path = self.path
         if self.waf != "True":
@@ -321,7 +323,7 @@ class Scanner:
             os.system("cat {0} | grep ',False,' | cut -d ',' -f 1 | sort -u > {1}".format(subs, ot))
             subs = ot
         output = path+"/idscanDOMN.log"
-        self.nuclei("idscan", subs, output)
+        self.nuclei("idscan", subs, output, ish)
         output = path+"/idscanDOMJ.log"
         self.jaeles("idscan", subs, output)
         if(os.path.exists(out)):
@@ -334,7 +336,7 @@ class Scanner:
         return line
 
     # enumerates WAFs using wafw00f & nuclei
-    def wafscan(self):
+    def wafscan(self, ish=""):
         domain = self.domain
         path = self.path
         subs = path+"/webenum.kenz"
@@ -348,7 +350,7 @@ class Scanner:
         output = path+"/wafscan.kenz"
         os.system("cat {0} | grep -v 'firewall,manufacturer' | sort -u > {1}".format(out, output))
         nuout = path+"/wafscan.log"
-        self.nuclei("wafscan", subs, nuout)
+        self.nuclei("wafscan", subs, nuout, ish)
         allscan = []
         try:
             with open(nuout, "r") as f:

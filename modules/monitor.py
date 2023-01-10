@@ -84,7 +84,11 @@ class Monitor:
         out = path+"/subenum.mon"
         ocer = path+"/certex.log"
         os.system('cat {0} | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {1}'.format(ocer, cer))
-        os.system("cat {0} {1} | sort -u > {2} && rm {0} {1}".format(cer, sub, out))
+        ceroutput = path + "/ncertex.log"
+        os.system("cat {0}/../*/subenum.kenz | sort -u > {0}/subtemp.log".format(path))
+        os.system("comm -23 {0} {1}/subtemp.log | sort -u > {2}".format(cer, path, ceroutput))
+        os.system("rm {0}/subtemp.log".format(path))
+        os.system("cat {0} {1} | sort -u > {2} && rm {0} {1}".format(ceroutput, sub, out))
         self.timestamp()
 
     # reinitialize automated hunt

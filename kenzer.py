@@ -53,6 +53,9 @@ try:
     _netlas = config.get("env", "netlas")
     _waf = config.get("env", "avoid-waf")
     _enablezap = config.get("env", "enable-zap")
+    _ish = config.get("env", "interactsh-server")+"|"+config.get("env", "interactsh-token")
+    if "http" not in _ish:
+        _ish=""
     _delegates = []
     os.chdir(_kenzer)
     os.environ["HOME"] = _home
@@ -75,7 +78,7 @@ class Kenzer(object):
 
     # initializations
     def __init__(self):
-        print(BLUE+"KENZER[3.65] by ARPSyndicate"+CLEAR)
+        print(BLUE+"KENZER[3.66] by ARPSyndicate"+CLEAR)
         print(YELLOW+"automated web assets enumeration & scanning"+CLEAR)
         self.client = zulip.Client(email=_BotMail, site=_Site, api_key=_APIKey)
         self.upload = False
@@ -109,7 +112,7 @@ class Kenzer(object):
 
     # manual
     def man(self):
-        message = "**KENZER[3.65]**\n"
+        message = "**KENZER[3.66]**\n"
         message += "**KENZER modules**\n"
         message += "`blacklist <target>,<regex>` - initializes & removes blacklisted targets\n"
         message += "`whitelist <target>,<regex>` - initializes & keeps only whitelisted targets\n"
@@ -743,7 +746,7 @@ class Kenzer(object):
                 "[subscan - ({0})] {1}".format("{0}/{1}".format((i-1),(len(self.content)-2)), domain))
             self.scan = scanner.Scanner(
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
-            message = self.scan.subscan()
+            message = self.scan.subscan(_ish)
             self.sendMessage("[subscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
             if self.upload:
@@ -824,7 +827,7 @@ class Kenzer(object):
                 "{0}/{1}".format((i-1),(len(self.content)-2)), domain, display))
             self.scan = scanner.Scanner(
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
-            message = self.scan.urlscan()
+            message = self.scan.urlscan(_ish)
             self.sendMessage("[urlscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
             if self.upload:
@@ -853,7 +856,7 @@ class Kenzer(object):
                 "{0}/{1}".format((i-1),(len(self.content)-2)), domain, display))
             self.scan = scanner.Scanner(
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
-            message = self.scan.cscan()
+            message = self.scan.cscan(_ish)
             self.sendMessage("[cscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
             if self.upload:
@@ -882,7 +885,7 @@ class Kenzer(object):
                 "{0}/{1}".format((i-1),(len(self.content)-2)), domain, display))
             self.scan = scanner.Scanner(
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
-            message = self.scan.cvescan()
+            message = self.scan.cvescan(_ish)
             self.sendMessage("[cvescan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
             if self.upload:
@@ -911,7 +914,7 @@ class Kenzer(object):
                 "{0}/{1}".format((i-1),(len(self.content)-2)), domain, display))
             self.scan = scanner.Scanner(
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
-            message = self.scan.vulnscan()
+            message = self.scan.vulnscan(_ish)
             self.sendMessage("[vulnscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
             if self.upload:
@@ -1145,7 +1148,7 @@ class Kenzer(object):
                 "{0}/{1}".format((i-1),(len(self.content)-2)), domain, display))
             self.scan = scanner.Scanner(
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
-            message = self.scan.idscan()
+            message = self.scan.idscan(_ish)
             self.sendMessage("[idscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
             if self.upload:
