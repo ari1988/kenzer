@@ -268,7 +268,7 @@ class Scanner:
             return("!webenum")
         if(os.path.exists(out)):
             os.system("mv {0} {0}.old".format(out))
-        os.system("favinizer -d {2}/favinizer.yaml -t 8 -T 80 -l {0} -o {1}".format(subs, out, self.templates))
+        os.system("favinizer -d {2}/favinizer.yaml -t 8 -T 80 -l {0} -o {1} -D {3}/favscan".format(subs, out, self.templates, self.path))
         if domain != "monitor" and dtype:
             os.system("mv {0} {0}.tmp && cat {0}.tmp | grep \"{1}\" | sort -u > {0} && rm {0}.tmp".format(out,domain))
         else:
@@ -479,6 +479,7 @@ class Scanner:
         os.system("shottie -l {0} -o {1}".format(subs, path+"/vizscan"))
         os.system("perceptic -s {2}perceptic.yaml -d {1}/vizscan -o {0} -t 30 && sed -i \"s/.png//g\" {0}".format(out,path, self.templates))
         os.system("while read p; do dom=`echo \"$p\" | cut -d \" \" -f 3`; sig=`echo \"$p\" | cut -d \" \" -f 1 | sed 's/\[//' | sed 's/\]//'`; ide=`echo \"$p\" | cut -d \" \" -f 2 | sed 's/\[//' | sed 's/\]//'`; mv \"{0}/vizscan/$dom.png\" \"{0}/vizscan/$sig#$ide#$dom.png\"; done < {0}/vizscan.kenz;".format(path))
+        os.system('find {0}/vizscan -type f \! -name "*#UNIDENTIFIED#*" -delete'.format(path))
         os.system("cd {0}/vizscan && optipng *".format(path))
         line = 0
         if(os.path.exists(out)):
