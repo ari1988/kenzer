@@ -572,9 +572,9 @@ class Enumerator:
         if(os.path.exists(output)):
             os.system("rm {0}".format(output))
         if dtype:
-            os.system("netlas download \"domain:*.{1}\" -d domain -c 200 | jq '.data.domain' -r > {0}".format(output, domain))
+            os.system("netlas download \"domain:*.{1}\" -d domain -c 100000 | jq '.data.domain' -r > {0}".format(output, domain))
         else:
-            os.system("netlas download 'a:\"{1}\"' -d domain -c 200 | jq '.data.domain' -r > {0}".format(output, domain))
+            os.system("netlas download 'a:\"{1}\"' -d domain -c 100000 | jq '.data.domain' -r > {0}".format(output, domain))
         return
 
     # enumerates subdomains using amass

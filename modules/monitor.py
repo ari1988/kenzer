@@ -27,7 +27,7 @@ class Monitor:
     def certex(self):
         domains = self.domains
         path = self.path
-        templ = path+"/certex.log"
+        templ = path+"/certex.mon"
         if len(domains) == 0:
             os.system(
                 'certex -l -f {0} -L 1 >> {1} &'.format(self.db+"../summary/targets.txt", templ))
@@ -83,12 +83,13 @@ class Monitor:
         sub = path+"/subfinder.mon"
         out = path+"/subenum.mon"
         ocer = path+"/certex.log"
+        os.system("mv {0} {1}".format(cer, ocer))
         os.system('cat {0} | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {1}'.format(ocer, cer))
-        ceroutput = path + "/ncertex.log"
+        os.system("cat {0} {1} | sort -u > {2} && rm {0} {1}".format(cer, sub, out))
+        os.system("mv {0} {0}.log").format(out)
         os.system("cat {0}/../*/subenum.kenz | sort -u > {0}/subtemp.log".format(path))
-        os.system("comm -23 {0} {1}/subtemp.log | sort -u > {2}".format(cer, path, ceroutput))
+        os.system("comm -23 {0}.log {1}/subtemp.log | sort -u > {0}".format(out, path))
         os.system("rm {0}/subtemp.log".format(path))
-        os.system("cat {0} {1} | sort -u > {2} && rm {0} {1}".format(ceroutput, sub, out))
         self.timestamp()
 
     # reinitialize automated hunt
