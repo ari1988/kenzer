@@ -86,7 +86,7 @@ class Monitor:
         os.system("mv {0} {1}".format(cer, ocer))
         os.system('cat {0} | grep "\[+\]" | cut -d " " -f 2 | sed -r "s~\\x01?(\\x1B\\(B)?\\x1B\\[([0-9;]*)?[JKmsu]\\x02?~~g" >> {1}'.format(ocer, cer))
         os.system("cat {0} {1} | sort -u > {2} && rm {0} {1}".format(cer, sub, out))
-        os.system("mv {0} {0}.log").format(out)
+        os.system("mv {0} {0}.log".format(out))
         os.system("cat {0}/../*/subenum.kenz | sort -u > {0}/subtemp.log".format(path))
         os.system("comm -23 {0}.log {1}/subtemp.log | sort -u > {0}".format(out, path))
         os.system("rm {0}/subtemp.log".format(path))
