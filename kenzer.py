@@ -60,11 +60,11 @@ try:
     _eproxy = False
     if "http" not in _proxyurl and "socks" not in _proxyurl:
         _proxyurl=""
-        os.environ["http_proxy"] = '""'
-        os.environ["HTTPS_PROXY"] = '""'
-        os.environ["HTTP_PROXY"] = '""'
+        os.environ["http_proxy"] = ""
+        os.environ["HTTPS_PROXY"] = ""
+        os.environ["HTTP_PROXY"] = ""
         os.environ["GOPROXY"] = '""'
-        os.environ["https_proxy"] = '""'
+        os.environ["https_proxy"] = ""
     else:
         _eproxy = True
     _delegates = []
