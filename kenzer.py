@@ -58,7 +58,7 @@ try:
     if "http" not in _ish:
         _ish=""
     _eproxy = False
-    if "http" not in _proxyurl and "socks" not in _proxyurl
+    if "http" not in _proxyurl and "socks" not in _proxyurl:
         _proxyurl=""
     else:
         os.environ["http_proxy"] = _proxyurl
@@ -1561,7 +1561,7 @@ class Kenzer(object):
                             _waf = "True"
                         self.sendMessage("avoid-waf: "+_waf)
                     elif comd.lower() == "proxy":
-                        if ("http" not in _proxyurl and "socks" not in _proxyurl) or _eproxy
+                        if ("http" not in _proxyurl and "socks" not in _proxyurl) or _eproxy:
                             os.environ["http_proxy"] = ""
                             os.environ["https_proxy"] = ""
                             _eproxy = False
