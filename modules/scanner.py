@@ -36,10 +36,10 @@ class Scanner:
         if len(self.severity) > 0:
             severity = "/"+self.severity
         if severity != "/workflow":
-            os.system("nuclei {5} -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -t {3}nuclei/{0}{4}".format(template, hosts, output, self.templates, severity, padd))
+            os.system("nuclei {5} -proxy $GOPROXY -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -t {3}nuclei/{0}{4}".format(template, hosts, output, self.templates, severity, padd))
         else:
-            os.system("cd {3}nuclei/{0} && nuclei {5} -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -w workflow".format(template, hosts, output+".workflow", self.templates, severity, padd))
-            os.system("nuclei {5} -stats -retries 1 -rl 50 -c 25 -duc -timeout 8 -l {1} -o {2} -t {3}nuclei/{0}/critical/standalone -t {3}nuclei/{0}/high/standalone -t {3}nuclei/{0}/medium/standalone -t {3}nuclei/{0}/low/standalone ".format(template, hosts, output+".standalone", self.templates, severity, padd))
+            os.system("cd {3}nuclei/{0} && nuclei {5} -proxy $GOPROXY -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -w workflow".format(template, hosts, output+".workflow", self.templates, severity, padd))
+            os.system("nuclei {5} -proxy $GOPROXY -stats -retries 1 -rl 50 -c 25 -duc -timeout 8 -l {1} -o {2} -t {3}nuclei/{0}/critical/standalone -t {3}nuclei/{0}/high/standalone -t {3}nuclei/{0}/medium/standalone -t {3}nuclei/{0}/low/standalone ".format(template, hosts, output+".standalone", self.templates, severity, padd))
             os.system("cat {0}.* | sort -u > {0} && rm {0}.*".format(output))
         return
 
@@ -48,7 +48,7 @@ class Scanner:
         severity = ""
         if len(self.severity) > 0 and self.severity!= "workflow":
             severity = self.severity
-        os.system("jaeles scan --retry 1 --no-background -c 50 --rootDir {3}jaeles/ -s {3}jaeles/{0}/{5} --timeout 8 -U {1} -O {2} -o {4}/jaeles --no-db --chunk true ".format(
+        os.system("jaeles scan --proxy $GOPROXY --retry 1 --no-background -c 50 --rootDir {3}jaeles/ -s {3}jaeles/{0}/{5} --timeout 8 -U {1} -O {2} -o {4}/jaeles --no-db --chunk true ".format(
             template, hosts, output, self.templates, self.path, severity))
         return
 
@@ -345,7 +345,7 @@ class Scanner:
         output = path+"/wafscan.csv"
         if(os.path.exists(output)):
             os.system("rm {0}".format(output))
-        os.system("cd /root && wafw00f --no-colors -i {0} -f csv -o {1}".format(subs,output))
+        os.system("cd /root && wafw00f --proxy $GOPROXY --no-colors -i {0} -f csv -o {1}".format(subs,output))
         out = output
         output = path+"/wafscan.kenz"
         os.system("cat {0} | grep -v 'firewall,manufacturer' | sort -u > {1}".format(out, output))
@@ -406,7 +406,7 @@ class Scanner:
             subs = ot
         if(os.path.exists(out)):
             os.system("rm {0}".format(out))
-        os.system("fuzzuli -f {0} -to 15 > {1}".format(subs, outl))
+        os.system("fuzzuli -px $GOPROXY -f {0} -to 15 > {1}".format(subs, outl))
         os.system('cat {0} | grep -Po "URL: \[.*\] " |  sort -u > {1}'.format(outl, out))
         line = 0
         if(os.path.exists(out)):
@@ -523,9 +523,9 @@ class Scanner:
         os.system("cat {0} {1} | sort -u > {2}".format(subs, urls, log))
         subs=log
         if len(blind)!=0:
-            os.system("dalfox file {0} --remote-payloads=portswigger,payloadbox --remote-wordlists=burp --timeout 10 -w 150 -b {2} -o {1}".format(subs, out, blind))
+            os.system("dalfox file {0} --remote-payloads=portswigger,payloadbox --proxy=$GOPROXY --remote-wordlists=burp --timeout 10 -w 150 -b {2} -o {1}".format(subs, out, blind))
         else:
-            os.system("dalfox file {0} --remote-payloads=portswigger,payloadbox --remote-wordlists=burp --timeout 10 -w 150 -o {1}".format(subs, out))
+            os.system("dalfox file {0} --remote-payloads=portswigger,payloadbox --proxy=$GOPROXY --remote-wordlists=burp --timeout 10 -w 150 -o {1}".format(subs, out))
         line = 0
         if(os.path.exists(out)):
             with open(out, encoding="ISO-8859-1") as f:

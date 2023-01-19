@@ -60,6 +60,11 @@ try:
     _eproxy = False
     if "http" not in _proxyurl and "socks" not in _proxyurl:
         _proxyurl=""
+        os.environ["http_proxy"] = ""
+        os.environ["HTTPS_PROXY"] = ""
+        os.environ["HTTP_PROXY"] = ""
+        os.environ["GOPROXY"] = ""
+        os.environ["https_proxy"] = ""
     else:
         _eproxy = True
     _delegates = []
@@ -446,10 +451,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.servenum()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[servenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -478,10 +489,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.webenum()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[webenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -510,10 +527,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.headenum()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[headenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -542,10 +565,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.wafscan()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[wafscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -569,10 +598,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.urlheadenum()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[urlheadenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -601,10 +636,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.dnsenum()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[dnsenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -633,10 +674,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.conenum()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[conenum - ({0}) - {1}] {2}".format("{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -665,10 +712,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.asnenum()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[asnenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -700,10 +753,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.portenum(mode)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[portenum{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -732,10 +791,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.repenum(_greynoise)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[repenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -759,10 +824,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.repoenum(_github)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[repoenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -795,10 +866,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.urlenum(_github, mode)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[urlenum{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain,display))
@@ -827,10 +904,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.subscan(_ish)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[subscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -859,10 +942,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.socenum()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[socenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -891,10 +980,16 @@ class Kenzer(object):
                 domain, _kenzerdb, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), dtype)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.enum.keysenum()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[keysenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -926,10 +1021,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.urlscan(_ish)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[urlscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -961,10 +1062,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.cscan(_ish)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[cscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -996,10 +1103,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.cvescan(_ish)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[cvescan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -1031,10 +1144,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.vulnscan(_ish)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[vulnscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -1063,10 +1182,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.shodscan()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[shodscan - ({0}) {2}] {1}".format("{0}/{1}".format((i-1),(len(self.content)-2)), domain, message))
@@ -1095,10 +1220,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.bakscan()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[bakscan - ({0}) {2}] {1}".format("{0}/{1}".format((i-1),(len(self.content)-2)), domain, message))
@@ -1127,10 +1258,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.portscan()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[portscan - ({0}) {2}] {1}".format("{0}/{1}".format((i-1),(len(self.content)-2)), domain, message))
@@ -1155,10 +1292,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.reposcan()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[reposcan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1187,10 +1330,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.buckscan()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[buckscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1219,10 +1368,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.favscan()
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[favscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1251,10 +1406,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.xssscan(blind)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[xssscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1283,10 +1444,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.appscan(zap)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[appscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1319,10 +1486,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf, severity)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.idscan(_ish)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[idscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -1354,10 +1527,16 @@ class Kenzer(object):
                 domain, _kenzerdb, dtype, _kenzer, _BotMail.split('@')[0].replace("-bot", ""), _waf)
             if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
             message = self.scan.vizscan(mode)
             if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[vizscan{3} - ({0}) - {2}] {1}".format("{0}/{1}".format((i-1),(len(self.content)-2)), domain, message, display))
@@ -1464,10 +1643,16 @@ class Kenzer(object):
             self.sendMessage("[freaker][{1}] *".format(target, exploit))
         if _eproxy:
                 os.environ["http_proxy"] = _proxyurl
+                os.environ["HTTPS_PROXY"] = _proxyurl
+                os.environ["HTTP_PROXY"] = _proxyurl
+                os.environ["GOPROXY"] = _proxyurl
                 os.environ["https_proxy"] = _proxyurl
         os.system("freaker -c {0} -r {1} {2}".format("configs/freaker.yaml", exploit, trg))
         if _eproxy:
                 os.environ["http_proxy"] = ""
+                os.environ["HTTPS_PROXY"] = ""
+                os.environ["HTTP_PROXY"] = ""
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""    
         return
 
