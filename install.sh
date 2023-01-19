@@ -26,10 +26,8 @@ if getopts "b" arg; then
   docker build -t certex-server .
   cd ..
   sudo cp kenzer-bin/* /usr/bin/
-  pip3 install --upgrade zapcli
   wget https://github.com/zaproxy/zaproxy/releases/download/v2.12.0/ZAP_2_12_0_unix.sh
   bash ZAP_2_12_0_unix.sh
-  pip3 install netlas
 fi
 git clone https://github.com/ARPSyndicate/kenzer-templates.git
 cd ..

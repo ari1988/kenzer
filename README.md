@@ -34,13 +34,14 @@
 - Subdomain Enumeration using Subfinder, Amass, CerteX, TLSX, DNSX, NXScan, & ShuffleDNS
 - Port Enumeration using NXScan (Shodan, Netlas, Naabu & Nmap)
 - Web Enumeration using HttpX, Favinizer, Domlock, Gau, GoSpider, URLhunter & Waymore
-- Web Vulnerability Scanning using Jaeles, Wapiti, ZAP, Nuclei, Rescro & DalFox
+- Web Vulnerability Scanning using Freaker, Jaeles, Wapiti, ZAP, Nuclei, Rescro & DalFox
 - Backup Files Scanning using Fuzzuli
 - Git Repository Enumeration & Scanning using RepoHunt & Trufflehog
 - Web Screenshot Identification using Shottie & Perceptic
 - WAF Detection & Avoidance using WafW00f & Nuclei
 - Reputation Scoring using DomREP (GreyNoise, URLHaus, PhishTank)
 - Every task can be distributed over multiple machines
+- Every task can be executed through a single HTTP/SOCKS Proxy
 
 ## Built-in Modules
 
@@ -84,6 +85,7 @@
 > - `disseminate <command> <target>` - splits & distributes input over multiple bots
 > - `upload` - switches upload functionality
 > - `waf` - switches waf avoid functionality"
+> - `proxy` - switches proxy functionality"
 > - `upgrade` - upgrades kenzer to latest version
 > - `monitor <target>` - monitors ct logs for new subdomains
 > - `monitor normalize` - normalizes the enumerations from ct logs

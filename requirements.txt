@@ -11,3 +11,5 @@ ipaddress
 timeago
 dnsgen
 trufflehog
+zapcli
+netlas

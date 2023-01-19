@@ -1,4 +1,5 @@
 git pull
+pip3 install -U -r requirements.txt
 cd resources/kenzer-bin/
 git pull
 sudo cp * /usr/bin/

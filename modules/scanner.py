@@ -243,7 +243,7 @@ class Scanner:
             "S3Hunter --no-regions -l {0} -o {1} -P".format(subs, output))
         subs = output
         output = path+"/s3huntPerms.log"
-        self.nuclei("subscan/web/S3Hunter.yaml", subs, output, ish)
+        self.nuclei("subscan/web/S3Hunter.yaml", subs, output)
         if(os.path.exists(out)):
             os.system("mv {0} {0}.old".format(out))
         os.system("cat {0}/s3hunt* | sort -u > {1}".format(path, out))

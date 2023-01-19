@@ -54,8 +54,16 @@ try:
     _waf = config.get("env", "avoid-waf")
     _enablezap = config.get("env", "enable-zap")
     _ish = config.get("env", "interactsh-server")+"|"+config.get("env", "interactsh-token")
+    _proxyurl = config.get("env", "proxy-url")
     if "http" not in _ish:
         _ish=""
+    _eproxy = False
+    if "http" not in _proxyurl and "socks" not in _proxyurl
+        _proxyurl=""
+    else:
+        os.environ["http_proxy"] = _proxyurl
+        os.environ["https_proxy"] = _proxyurl
+        _eproxy = True
     _delegates = []
     os.chdir(_kenzer)
     os.environ["HOME"] = _home
@@ -78,7 +86,7 @@ class Kenzer(object):
 
     # initializations
     def __init__(self):
-        print(BLUE+"KENZER[3.66] by ARPSyndicate"+CLEAR)
+        print(BLUE+"KENZER[3.67] by ARPSyndicate"+CLEAR)
         print(YELLOW+"automated web assets enumeration & scanning"+CLEAR)
         self.client = zulip.Client(email=_BotMail, site=_Site, api_key=_APIKey)
         self.upload = False
@@ -112,7 +120,7 @@ class Kenzer(object):
 
     # manual
     def man(self):
-        message = "**KENZER[3.66]**\n"
+        message = "**KENZER[3.67]**\n"
         message += "**KENZER modules**\n"
         message += "`blacklist <target>,<regex>` - initializes & removes blacklisted targets\n"
         message += "`whitelist <target>,<regex>` - initializes & keeps only whitelisted targets\n"
@@ -154,6 +162,7 @@ class Kenzer(object):
         message += "`hunt <target>` - runs your custom workflow\n"
         message += "`upload` - switches upload functionality\n"
         message += "`waf` - switches waf avoid functionality\n"
+        message += "`proxy` - switches proxy functionality\n"
         message += "`upgrade` - upgrades kenzer to latest version\n"
         message += "`monitor <target>` - monitors ct logs for new subdomains\n"
         message += "`monitor normalize` - normalizes the enumerations from ct logs\n"
@@ -1248,12 +1257,12 @@ class Kenzer(object):
         self.buckscan()
         self.vulnscan("workflow")
         self.vizscan()
-        self.bakscan()
         self.sync(True)
         self.freaker("keyleaks", "monitor")
         self.freaker("basic-xss-fuzz", "monitor")
         self.sync()
         # experimental ones
+        # self.bakscan()
         # self.xssscan()
         # self.freaker("wapiti-scan", "monitor")
         # self.freaker("zap-scan", "monitor")
@@ -1331,7 +1340,7 @@ class Kenzer(object):
         global _delegates
         _delegates = list(set(_delegates))
         if(len(comnd)>len(_delegates)):
-            self.sendMessage("[exception] require {0} more delegates.".format(len(comnd)-len(_delegates)))
+            self.sendMessage("[exception] require {0} more delegates. continuing...".format(len(comnd)-len(_delegates)))
             return False
         self.assign_delegates(comnd)
         return True
@@ -1551,6 +1560,16 @@ class Kenzer(object):
                         else:
                             _waf = "True"
                         self.sendMessage("avoid-waf: "+_waf)
+                    elif comd.lower() == "proxy":
+                        if ("http" not in _proxyurl and "socks" not in _proxyurl) or _eproxy
+                            os.environ["http_proxy"] = ""
+                            os.environ["https_proxy"] = ""
+                            _eproxy = False
+                        else:
+                            os.environ["http_proxy"] = _proxyurl
+                            os.environ["https_proxy"] = _proxyurl
+                            _eproxy = True
+                        self.sendMessage("enabled-proxy: "+str(_eproxy))
                     else:
                         message = self.chatbot.get_response(' '.join(self.content))
                         message = message.serialize()['text']
