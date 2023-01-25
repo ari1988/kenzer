@@ -63,7 +63,7 @@ try:
         os.environ["http_proxy"] = ""
         os.environ["HTTPS_PROXY"] = ""
         os.environ["HTTP_PROXY"] = ""
-        os.environ["GOPROXY"] = '""'
+        os.environ["GOPROXY"] = ""
         os.environ["https_proxy"] = ""
     else:
         _eproxy = True
@@ -460,7 +460,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[servenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -498,7 +498,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[webenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -536,7 +536,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[headenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -574,7 +574,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[wafscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -607,7 +607,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[urlheadenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -645,7 +645,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[dnsenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -683,7 +683,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[conenum - ({0}) - {1}] {2}".format("{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -721,7 +721,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[asnenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -762,7 +762,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[portenum{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -800,7 +800,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[repenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -833,7 +833,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[repoenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -875,7 +875,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[urlenum{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain,display))
@@ -913,7 +913,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[subscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -951,7 +951,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[socenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -989,7 +989,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[keysenum - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1030,7 +1030,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[urlscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -1071,7 +1071,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[cscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -1112,7 +1112,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[cvescan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -1153,7 +1153,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[vulnscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -1191,7 +1191,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[shodscan - ({0}) {2}] {1}".format("{0}/{1}".format((i-1),(len(self.content)-2)), domain, message))
@@ -1229,7 +1229,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[bakscan - ({0}) {2}] {1}".format("{0}/{1}".format((i-1),(len(self.content)-2)), domain, message))
@@ -1267,7 +1267,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[portscan - ({0}) {2}] {1}".format("{0}/{1}".format((i-1),(len(self.content)-2)), domain, message))
@@ -1301,7 +1301,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[reposcan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1339,7 +1339,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[buckscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1377,7 +1377,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[favscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1415,7 +1415,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[xssscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1453,7 +1453,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[appscan - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain))
@@ -1495,7 +1495,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage("[idscan{3} - ({0}) - {1}] {2}".format(
                 "{0}/{1}".format((i-1),(len(self.content)-2)), message, domain, display))
@@ -1536,7 +1536,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""
             self.sendMessage(
                 "[vizscan{3} - ({0}) - {2}] {1}".format("{0}/{1}".format((i-1),(len(self.content)-2)), domain, message, display))
@@ -1652,7 +1652,7 @@ class Kenzer(object):
                 os.environ["http_proxy"] = ""
                 os.environ["HTTPS_PROXY"] = ""
                 os.environ["HTTP_PROXY"] = ""
-                os.environ["GOPROXY"] = '""'
+                os.environ["GOPROXY"] = ""
                 os.environ["https_proxy"] = ""    
         return
 
