@@ -617,7 +617,7 @@ class Enumerator:
     # probes for web servers using httpx
     def httpx(self, domains, output, extras=""):
         os.system(
-            "httpx {2}  -no-color -l {0} -rl 70 -threads 70 -retries 2 -timeout 8 -verbose -o {1} -proxy $GOPROXY".format(domains, output, extras))
+            "httpx {2}  -no-color -l {0} -rl 70 -threads 70 -retries 2 -timeout 8 -verbose -o {1} -proxy \"$GOPROXY\" ".format(domains, output, extras))
         return
 
     # enumerates files & directories using kiterunner
@@ -714,7 +714,7 @@ class Enumerator:
         path += "/katana.log"
         if(os.path.exists(path)):
             os.system("rm {0}".format(path))
-        os.system("katana -list {0}/webenum.kenz -o {1} -jc -kf -sc -retry 2 -d 3 -aff -c 25 -p 15 -fs fqdn -proxy $GOPROXY ".format(self.path, path))
+        os.system("katana -list {0}/webenum.kenz -o {1} -jc -kf -sc -retry 2 -d 3 -aff -c 25 -p 15 -fs fqdn -proxy \"$GOPROXY\" ".format(self.path, path))
         return
 
     # clusters urls using YourX
