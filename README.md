@@ -15,7 +15,7 @@
 
 ## Instructions for running
 
-0. Run `git clone https://github.com/ARPSyndicate/kenzer /root/kenzer && cd /root/kenzer` **(preferred)**<br>
+0. Run `git clone https://github.com/ARPSyndicate/kenzer /home/ubuntu/kenzer && cd /home/ubuntu/kenzer` **(preferred)**<br>
 1. Create an account on [Zulip](https://zulipchat.com)<br>
 2. Navigate to `Settings > Your Bots > Add a new bot`<br>
 3. Create a new generic bot named `kenzer`<br>

@@ -1,1 +1,1 @@
-sudo servx -n "kenzer" -c "cd /home/ubuntu/kenzer/ && ./run.sh" -e
+sudo servx -t template.servx -n "kenzer" -c "cd /home/ubuntu/kenzer/ && ./run.sh" -e
