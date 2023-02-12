@@ -39,7 +39,10 @@ class Scanner:
             os.system("nuclei {5} -itags fuzz -proxy \"$GOPROXY\" -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -t {3}nuclei/{0}{4}".format(template, hosts, output, self.templates, severity, padd))
         else:
             os.system("cd {3}nuclei/{0} && nuclei {5} -itags fuzz -proxy \"$GOPROXY\" -stats -retries 1 -rl 50 -c 25 -duc -timeout 10 -l {1} -o {2} -w workflow".format(template, hosts, output+".workflow", self.templates, severity, padd))
-            os.system("nuclei {5} -itags fuzz -proxy \"$GOPROXY\" -stats -retries 1 -rl 50 -c 25 -duc -timeout 8 -l {1} -o {2} -t {3}nuclei/{0}/critical/standalone -t {3}nuclei/{0}/high/standalone -t {3}nuclei/{0}/medium/standalone -t {3}nuclei/{0}/low/standalone ".format(template, hosts, output+".standalone", self.templates, severity, padd))
+            if "idscan" not in template:
+                os.system("nuclei {5} -itags fuzz -proxy \"$GOPROXY\" -stats -retries 1 -rl 50 -c 25 -duc -timeout 8 -l {1} -o {2} -t {3}nuclei/{0}/critical/standalone -t {3}nuclei/{0}/high/standalone -t {3}nuclei/{0}/medium/standalone -t {3}nuclei/{0}/low/standalone ".format(template, hosts, output+".standalone", self.templates, severity, padd))
+            else:
+                os.system("nuclei {5} -itags fuzz -proxy \"$GOPROXY\" -stats -retries 1 -rl 50 -c 25 -duc -timeout 8 -l {1} -o {2} -t {3}nuclei/{0}/critical/standalone -t {3}nuclei/{0}/high/standalone -t {3}nuclei/{0}/medium/standalone -t {3}nuclei/{0}/low/standalone -t {3}nuclei/{0}/info/standalone ".format(template, hosts, output+".standalone", self.templates, severity, padd))
             os.system("cat {0}.* | sort -u > {0} && rm {0}.*".format(output))
         return
 

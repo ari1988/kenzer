@@ -89,7 +89,7 @@ class Kenzer(object):
 
     # initializations
     def __init__(self):
-        print(BLUE+"KENZER[3.67] by ARPSyndicate"+CLEAR)
+        print(BLUE+"KENZER[3.68] by ARPSyndicate"+CLEAR)
         print(YELLOW+"automated web assets enumeration & scanning"+CLEAR)
         self.client = zulip.Client(email=_BotMail, site=_Site, api_key=_APIKey)
         self.upload = False
@@ -123,7 +123,7 @@ class Kenzer(object):
 
     # manual
     def man(self):
-        message = "**KENZER[3.67]**\n"
+        message = "**KENZER[3.68]**\n"
         message += "**KENZER modules**\n"
         message += "`blacklist <target>,<regex>` - initializes & removes blacklisted targets\n"
         message += "`whitelist <target>,<regex>` - initializes & keeps only whitelisted targets\n"
@@ -219,12 +219,12 @@ class Kenzer(object):
 
     # removes log files
     def remlog(self):
-        os.system("rm {0}*/*.log*".format(_kenzerdb))
-        os.system("rm {0}*/*.old*".format(_kenzerdb))
-        os.system("rm {0}*/*.csv*".format(_kenzerdb))
+        os.system("sudo rm {0}*/*.log*".format(_kenzerdb))
+        os.system("sudo rm {0}*/*.old*".format(_kenzerdb))
+        os.system("sudo rm {0}*/*.csv*".format(_kenzerdb))
         os.system(
-            "rm -r {0}*/nuclei {0}*/jaeles {0}*/passive-jaeles {0}*/nxscan {0}*/gocrawler {0}*/reposcan".format(_kenzerdb))
-        os.system("find {0} -type f -empty -delete".format(_kenzerdb))
+            "sudo rm -r {0}*/nuclei {0}*/jaeles {0}*/passive-jaeles {0}*/nxscan {0}*/gocrawler {0}*/reposcan".format(_kenzerdb))
+        os.system("sudo find {0} -type f -empty -delete".format(_kenzerdb))
         return
 
     # splits .kenz files
