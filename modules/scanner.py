@@ -348,7 +348,7 @@ class Scanner:
         output = path+"/wafscan.csv"
         if(os.path.exists(output)):
             os.system("rm {0}".format(output))
-        os.system("cd {2} && wafw00f --proxy \"$GOPROXY\" --no-colors -i {0} -f csv -o {1}".format(subs,output,self.path))
+        os.system("cd {0} && wafw00f --proxy \"$GOPROXY\" --no-colors -i /root/webenum.kenz -f csv -o /root/wafscan.csv".format(self.path))
         out = output
         output = path+"/wafscan.kenz"
         os.system("cat {0} | grep -v 'firewall,manufacturer' | sort -u > {1}".format(out, output))
